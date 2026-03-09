@@ -1,0 +1,16 @@
+# GitHub Pages Configuration
+
+destination: docs
+
+# Optional configurations
+
+# Title of your project
+name: Bluetooth Jammer
+
+# Base URL
+baseurl: ""
+
+# Author Information
+author:
+  name: "sudhiraj09"
+  email: "sudhiraj09@example.com"
