@@ -1,88 +1,53 @@
-#include "RF24.h"
+# Bluetooth Jammer
 
-#include "esp_bt.h"
-#include "esp_wifi.h"
+## Project Overview
+This Bluetooth Jammer project aims to disrupt Bluetooth communication in a specified area by emitting signals on the Bluetooth spectrum. It is intended for educational and testing purposes only.
 
-SPIClass *hp = nullptr;
+## Features
+- **Channel Hopping:** The jammer utilizes various channels to evade detection.
+- **Adjustable Power Levels:** Control the power output for optimal performance.
+- **User-Friendly Interface:** Simple command structure for easy operation.
 
-RF24 radio(16, 15, 16000000);
+## Hardware Requirements
+- Microcontroller (e.g., Raspberry Pi, Arduino)
+- Bluetooth Module
+- Power Supply (Battery or AC Adapter)
+- Connecting Wires
+- Breadboard (for prototyping)
+- Optional: Enclosure for temporary or permanent setup
 
-byte i = 45;
+## Installation
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/sudhiraj09/Bluetooth-jammer.git
+   ```
+2. **Install Dependencies:** 
+   Ensure all necessary libraries for your microcontroller are installed.
 
-unsigned int flag = 0;
+## Usage
+1. Connect the hardware according to the configuration guide.
+2. Power on the device.
+3. Use the following command to initiate the jamming:
+   ```bash
+   python jammer.py
+   ```
 
+## Configuration
+Adjust configuration parameters in the `config.json` as per your requirements. Ensure to set the correct frequency ranges and power levels.
 
+## Hardware Setup
+Schematic diagrams and pin connections should be referenced in the `hardware_setup.py` file.
 
-void setup(void) {
-  esp_bt_controller_deinit();
-  esp_wifi_stop();
-  esp_wifi_deinit();
-  Serial.begin(115200);
-  toggleSwitch.setDebounceTime(50);
-  initHP();
-}
+## Channel Hopping Modes
+The Bluetooth Jammer supports several channel hopping modes which can be configured in the settings. Users can switch between modes for optimal performance under various conditions.
 
-void initHP() {
-  hp = new SPIClass(HSPI);
-  hp->begin();
-  if (radio.begin(hp)) {
-    delay(200);
-    Serial.println("Hp Started !!!");
-    radio.setAutoAck(false);
-    radio.stopListening();
-    radio.setRetries(0, 0);
-    radio.setPayloadSize(5);   ////SET VALUE ON RF24.CPP
-    radio.setAddressWidth(3);  ////SET VALUE ON RF24.CPP
-    radio.setPALevel(RF24_PA_MAX, true);
-    radio.setDataRate(RF24_2MBPS);
-    radio.setCRCLength(RF24_CRC_DISABLED);
-    radio.printPrettyDetails();
-    radio.startConstCarrier(RF24_PA_MAX, i);
-  } else {
-    Serial.println("HP couldn't start !!!");
-  }
-}
+## Troubleshooting
+- **Device Not Powering On:** Check your power supply connections.
+- **Incomplete Jamming:** Ensure that you're within range of your target devices.
+- **Connection Issues:** Verify that the Bluetooth module is properly connected and configured.
 
-void two() {
-  ///CHANNEL WITH 2 SPACING HOPPING
-  if (flag == 0) {
-    i += 2;
-  } else {
-    i -= 2;
-  }
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-  if ((i > 79) && (flag == 0)) {
-    flag = 1;
-  } else if ((i < 2) && (flag == 1)) {
-    flag = 0;
-  }
-
-  radio.setChannel(i);
-  //Serial.println(i);
-}
-
-void one() {
-  ////SWEEP CHANNEL
-  for (int i = 0; i < 79; i++) {
-    radio.setChannel(i);
-  }
-}
-
-void loop(void) {
-  // toggleSwitch.loop();  // Removed button loop
-
-  // Removed button state checks
-  // int state = toggleSwitch.getState();
-
-  // if (state == HIGH)
-  //   two();
-  // else {
-  //   one();
-  // }
-
-  // You can choose to call either function directly
-  // For example, to always call `two()`:
-  two();
-  // Or to always call `one()`:
-  // one();
-}
+## Contributing
+Contributions are welcome! Please read `CONTRIBUTING.md` for guidelines on how to contribute to this project.
