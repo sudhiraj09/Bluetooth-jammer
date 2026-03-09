@@ -9,11 +9,12 @@ This Bluetooth Jammer project aims to disrupt Bluetooth communication in a speci
 - **User-Friendly Interface:** Simple command structure for easy operation.
 
 ## Hardware Requirements
-- Microcontroller (e.g., Raspberry Pi, Arduino)
+- Microcontroller (e.g., esp 32 wroom32)
 - Bluetooth Module
 - Power Supply (Battery or AC Adapter)
 - Connecting Wires
 - Breadboard (for prototyping)
+- Antina (Nrf24 L01)
 - Optional: Enclosure for temporary or permanent setup
 
 ## Installation
