@@ -4,9 +4,8 @@
 This Bluetooth Jammer project aims to disrupt Bluetooth communication in a specified area by emitting signals on the Bluetooth spectrum. It is intended for educational and testing purposes only.
 
 ## Features
-- **Channel Hopping:** The jammer utilizes various channels to evade detection.
-- **Adjustable Power Levels:** Control the power output for optimal performance.
-- **User-Friendly Interface:** Simple command structure for easy operation.
+- **Channel Flooding:** The jammer utilizes various channels to evade detection.
+- Simple command structure for easy operation.
 
 ## Hardware Requirements
 - Microcontroller (e.g., esp 32 wroom32)
@@ -38,10 +37,10 @@ Adjust configuration parameters in the `config.json` as per your requirements. E
 
 ## Hardware Setup
 Schematic diagrams and pin connections should be referenced in the `hardware_setup.py` file.
+connected the pins upload the code and power up to work this device.
 
-## Channel Hopping Modes
-The Bluetooth Jammer supports several channel hopping modes which can be configured in the settings. Users can switch between modes for optimal performance under various conditions.
-
+## Channel flooding Modes
+The Bluetooth Jammer supports several channel flooding modes which can be configured in the settings. 
 ## Troubleshooting
 - **Device Not Powering On:** Check your power supply connections.
 - **Incomplete Jamming:** Ensure that you're within range of your target devices.
